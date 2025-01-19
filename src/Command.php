@@ -1,16 +1,17 @@
 <?php
 /**
- * This file is part of t2.
+ * This file is part of T2-Engine.
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the MIT-LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @author    Tony<lucky@t2engine.cn>
- * @copyright Tony<lucky@t2engine.cn>
- * @link      http://www.t2engine.cn/
+ * @author    Tony<dev@t2engine.cn>
+ * @copyright Tony<dev@t2engine.cn>
+ * @link      https://www.t2engine.cn/
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
+declare(strict_types=1);
 
 namespace T2\Console;
 
@@ -41,7 +42,7 @@ class Command extends Application
     public function installCommands($path, string $namspace = 'app\command'): void
     {
         $dir_iterator = new RecursiveDirectoryIterator($path);
-        $iterator = new RecursiveIteratorIterator($dir_iterator);
+        $iterator     = new RecursiveIteratorIterator($dir_iterator);
         foreach ($iterator as $file) {
             /**
              * @var SplFileInfo $file
@@ -67,12 +68,12 @@ class Command extends Application
                 continue;
             }
             $properties = $reflection->getStaticProperties();
-            $name = $properties['defaultName'] ?? null;
+            $name       = $properties['defaultName'] ?? null;
             if (!$name) {
                 throw new RuntimeException("Command {$class_name} has no defaultName");
             }
             $description = $properties['defaultDescription'] ?? '';
-            $command = Container::get($class_name);
+            $command     = Container::get($class_name);
             $command->setName($name)->setDescription($description);
             $this->add($command);
         }

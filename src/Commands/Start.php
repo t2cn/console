@@ -1,24 +1,26 @@
 <?php
 /**
- * This file is part of t2.
+ * This file is part of T2-Engine.
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the MIT-LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @author    Tony<lucky@t2engine.cn>
- * @copyright Tony<lucky@t2engine.cn>
- * @link      http://www.t2engine.cn/
+ * @author    Tony<dev@t2engine.cn>
+ * @copyright Tony<dev@t2engine.cn>
+ * @link      https://www.t2engine.cn/
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
+declare(strict_types=1);
 
 namespace T2\Console\Commands;
 
-use App\Application;
+use T2\App;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Throwable;
 
 class Start extends Command
 {
@@ -40,9 +42,15 @@ class Start extends Command
         $this->addOption('daemon', 'd', InputOption::VALUE_NONE, 'DAEMON mode');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     * @throws Throwable
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        Application::run();
+        App::run();
         return self::SUCCESS;
     }
 }

@@ -22,8 +22,11 @@
     "wiki": "https://wiki.t2engine.cn/",
     "source": "https://github.com/t2cn/console"
   },
+  "require": {
+    "symfony/console": ">=5.0"
+  },
   "require-dev": {
-    "t2cn/t2engine": "^1.0.0"
+    "t2cn/engine": "^1.0.0"
   },
   "autoload": {
     "psr-4": {

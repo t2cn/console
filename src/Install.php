@@ -1,22 +1,23 @@
 <?php
 /**
- * This file is part of t2.
+ * This file is part of T2-Engine.
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the MIT-LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @author    Tony<lucky@t2engine.cn>
- * @copyright Tony<lucky@t2engine.cn>
- * @link      http://www.t2engine.cn/
+ * @author    Tony<dev@t2engine.cn>
+ * @copyright Tony<dev@t2engine.cn>
+ * @link      https://www.t2engine.cn/
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
+declare(strict_types=1);
 
 namespace T2\Console;
 
 class Install
 {
-    const bool T2ENGINE = true;
+    const bool T2_INSTALL = true;
 
     /**
      * @var array 目录关系映射
@@ -33,7 +34,7 @@ class Install
      */
     public static function install(): void
     {
-        $dest = base_path() . "/t2engine"; // 定义目标安装目录
+        $dest = base_path() . "/engine"; // 定义目标安装目录
 
         // 检查目标目录是否已存在
         if (is_dir($dest)) {
@@ -42,10 +43,10 @@ class Install
         }
 
         // 复制安装文件到目标目录
-        copy(__DIR__ . "/t2engine", $dest);
+        copy(__DIR__ . "/engine", $dest);
 
         // 设置目标目录权限
-        chmod(base_path() . "/t2engine", 0755);
+        chmod(base_path() . "/engine", 0755);
 
         // 执行基于路径关系的安装逻辑
         static::installByRelation();
@@ -59,8 +60,8 @@ class Install
     public static function uninstall(): void
     {
         // 检查并删除目标安装文件
-        if (is_file(base_path() . "/t2engine")) {
-            unlink(base_path() . "/t2engine");
+        if (is_file(base_path() . "/engine")) {
+            unlink(base_path() . "/engine");
         }
 
         // 执行基于路径关系的卸载逻辑

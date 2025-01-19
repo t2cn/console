@@ -1,16 +1,17 @@
 <?php
 /**
- * This file is part of t2.
+ * This file is part of T2-Engine.
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the MIT-LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @author    Tony<lucky@t2engine.cn>
- * @copyright Tony<lucky@t2engine.cn>
- * @link      http://www.t2engine.cn/
+ * @author    Tony<dev@t2engine.cn>
+ * @copyright Tony<dev@t2engine.cn>
+ * @link      https://www.t2engine.cn/
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
+declare(strict_types=1);
 
 namespace T2\Console\Commands;
 
@@ -28,7 +29,7 @@ class Version extends Command
     /**
      * @var string
      */
-    protected static string $defaultDescription = 'Show T2 Engine version';
+    protected static string $defaultDescription = 'Show T2 engine version';
 
     /**
      * @param InputInterface $input
@@ -41,8 +42,8 @@ class Version extends Command
         if (is_file($installed_file)) {
             $version_info = include $installed_file;
         }
-        $t2engine_framework_version = $version_info['versions']['scbtl/t2-framework']['pretty_version'] ?? '';
-        $output->writeln("T2Engine-framework $t2engine_framework_version");
+        $t2_engine_version = $version_info['versions']['t2cn/engine']['pretty_version'] ?? '';
+        $output->writeln("T2 Engine $t2_engine_version");
         return self::SUCCESS;
     }
 }
