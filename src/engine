@@ -46,9 +46,10 @@ if (!in_array($argv[1] ?? '', ['start', 'restart', 'stop', 'status', 'reload', '
 $cli = new Command();
 $cli->setName('T2 Engine cli');
 $cli->installInternalCommands();
-if (is_dir($command_path = Util::guessPath(app_path(), '/command', true))) {
-    $cli->installCommands($command_path);
-}
+
+//if (is_dir($command_path = Util::guessPath(app_path(), '/command', true))) {
+//    $cli->installCommands($command_path);
+//}
 
 foreach (config('plugin', []) as $firm => $projects) {
     if (isset($projects['app'])) {
