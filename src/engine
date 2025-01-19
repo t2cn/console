@@ -34,10 +34,10 @@ if ($timezone = $appConfig['default_timezone'] ?? '') {
 }
 
 if (!in_array($argv[1] ?? '', ['start', 'restart', 'stop', 'status', 'reload', 'connections'])) {
-    require_once __DIR__ . '/vendor/scbtl/t2-framework/src/App/bootstrap.php';
+    require_once __DIR__ . '/vendor/t2cn/framework/src/App/bootstrap.php';
 } else {
-    if (class_exists('App\Application')) {
-        App\Application::loadAllConfig(['route']);
+    if (class_exists('T2\App')) {
+        T2\App::loadAllConfig(['route']);
     } else {
         Config::reload(config_path(), ['route', 'container']);
     }
